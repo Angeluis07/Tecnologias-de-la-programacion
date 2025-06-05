@@ -1,0 +1,1 @@
+profundidad([[[c], b, [d]], a, [[], e, [f]]], Profundidad).
