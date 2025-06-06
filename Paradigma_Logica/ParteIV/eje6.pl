@@ -31,28 +31,52 @@ sarna]).
 
 
 % Busca si un Atomo se encuentra dentro de una lista
-buscar_list(Atomo,[]) :- !.
-buscar_list(Atomo, [X|Cola]) :-
+buscar_list(_,[]) :- fail.
+buscar_list(Atomo, [X|_]) :-
     Atomo = X,
     !.
 buscar_list(Atomo, [X|Cola]) :-
     Atomo \= X,
     buscar_list(Atomo,Cola).
 
-
-% Busca un Atomo dentro del diccionario, si lo encuentra lo devuelve como una lista de un elemento
+% Busca un Atomo dentro del diccionario
 buscar_dic(Atomo) :-
   dic(L),
   buscar_list(Atomo, L).
 
+% Busca un Atomo dentro del diccionario, si lo encuentra lo devuelve como una lista de un elemento
 buscar(Atomo, [L]) :-
   buscar_dic(Atomo),
   L = Atomo,
   !.
 
-% Tengo que pasar a atom_chars cada uno de los elementos del diccionario y recorrer con recursividad
+% La funcion buscar es un wrapper que hace uso de semejana_dic
 buscar(Atomo, L) :-
-  atom_chars(Atomo,L_Atomo),
+  atom_chars(Atomo,AtomoListado),
+  dic(ListDic),
+  semejanza_dic(AtomoListado,ListDic,L2),
+  L = L2.
+
+% Recorro todos los elementos de mi diccionario y calculo su semejanza con el Atomo
+% solicitado, en caso de que la semejanza sea mayo a 0 se guarda en un lista
+% tanto la palabra como el valor de semejanza recibido
+
+semejanza_dic(_,[],[]) :- !.
+semejanza_dic(AtomoListado,[X|Cola],[[X,S]|ColaL]) :-
+    atom_chars(X,XListado),
+    semejanza(AtomoListado,XListado,S),
+    S > 0,
+    semejanza_dic(AtomoListado,Cola,ColaL).
+semejanza_dic(AtomoListado,[X|Cola],ColaL) :-
+    atom_chars(X,XListado),
+    semejanza(AtomoListado,XListado,S),
+    S =< 0,
+    semejanza_dic(AtomoListado,Cola,ColaL).
+  
+
+
+
+
 
 
 
