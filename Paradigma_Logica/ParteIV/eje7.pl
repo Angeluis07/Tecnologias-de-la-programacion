@@ -11,11 +11,13 @@
 reemplazar(_,_,Inicio,_,_,_) :-
     Inicio < 1,
     write('El valor de inicio debe ser mayor o igual a 1'),
+    !,
     fail.
 reemplazar(_,_,_,CantRem,_,_) :-
     CantRem < 1,
     CantRem \= -1,
     write('La cantidad de reemplazos debe ser mayor o igual a 1'),
+    !,
     fail.
 
 
