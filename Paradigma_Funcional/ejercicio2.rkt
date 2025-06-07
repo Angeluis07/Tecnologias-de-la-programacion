@@ -1,7 +1,7 @@
 (cons 'car '+)
 ```
-Crea un par (pair) con 'car como primer elemento y '+ como segundo.  
-**Devuelve:**  
+Crea un par (pair) con 'car como primer elemento y '+ como segundo.
+**Devuelve:**
 ```racket
 '(car . +)
 ```
@@ -9,8 +9,8 @@ Crea un par (pair) con 'car como primer elemento y '+ como segundo.
 ````racket
 (list 'esto '(es muy facil))
 ```
-Crea una lista con dos elementos: el símbolo 'esto y la lista '(es muy facil).  
-**Devuelve:**  
+Crea una lista con dos elementos: el símbolo 'esto y la lista '(es muy facil).
+**Devuelve:**
 ```racket
 '(esto (es muy facil))
 ```
@@ -18,17 +18,17 @@ Crea una lista con dos elementos: el símbolo 'esto y la lista '(es muy facil).
 ````racket
 (cons 'pero '(se está complicando...)) (cons '(y ahora no se que ) 'hizo)
 ```
-Primera parte:  
-`(cons 'pero '(se está complicando...))`  
-Agrega 'pero al inicio de la lista '(se está complicando...).  
-**Devuelve:**  
+Primera parte:
+`(cons 'pero '(se está complicando...))`
+Agrega 'pero al inicio de la lista '(se está complicando...).
+**Devuelve:**
 ```racket
 '(pero se está complicando...)
 ```
-Segunda parte:  
-`(cons '(y ahora no se que ) 'hizo)`  
-Crea un par donde el primer elemento es la lista '(y ahora no se que) y el segundo es 'hizo.  
-**Devuelve:**  
+Segunda parte:
+`(cons '(y ahora no se que ) 'hizo)`
+Crea un par donde el primer elemento es la lista '(y ahora no se que) y el segundo es 'hizo.
+**Devuelve:**
 ```racket
 '((y ahora no se que) . hizo)
 ```
@@ -36,8 +36,8 @@ Crea un par donde el primer elemento es la lista '(y ahora no se que) y el segun
 ````racket
 (quote (+ 7 2))
 ```
-Devuelve la lista literal (+ 7 2) sin evaluarla.  
-**Devuelve:**  
+Devuelve la lista literal (+ 7 2) sin evaluarla.
+**Devuelve:**
 ```racket
 '(+ 7 2)
 ```
@@ -45,24 +45,24 @@ Devuelve la lista literal (+ 7 2) sin evaluarla.
 ````racket
 (cons '+ '(10 3)) (car '(+ 10 3)) (cdr '(+ 10 3)) cons
 ```
-Primera parte:  
-`(cons '+ '(10 3))`  
-Agrega '+ al inicio de la lista '(10 3).  
-**Devuelve:**  
+Primera parte:
+`(cons '+ '(10 3))`
+Agrega '+ al inicio de la lista '(10 3).
+**Devuelve:**
 ```racket
 '(+ 10 3)
 ```
-Segunda parte:  
-`(car '(+ 10 3))`  
-Devuelve el primer elemento de la lista, que es '+.  
-**Devuelve:**  
+Segunda parte:
+`(car '(+ 10 3))`
+Devuelve el primer elemento de la lista, que es '+.
+**Devuelve:**
 ```racket
 '+
 ```
-Tercera parte:  
-`(cdr '(+ 10 3))`  
-Devuelve la cola de la lista, es decir, '(10 3).  
-**Devuelve:**  
+Tercera parte:
+`(cdr '(+ 10 3))`
+Devuelve la cola de la lista, es decir, '(10 3).
+**Devuelve:**
 ```racket
 '(10 3)
 ```
@@ -71,24 +71,24 @@ La palabra `cons` sola no hace nada útil aquí; si la ejecutas, devuelve la fun
 ````racket
 (quote (cons (car (cdr (7 4)))) ) (quote cons) (car (quote (quote cons)))
 ```
-Primera parte:  
-`(quote (cons (car (cdr (7 4)))) )`  
-Devuelve la lista literal (cons (car (cdr (7 4)))).  
-**Devuelve:**  
+Primera parte:
+`(quote (cons (car (cdr (7 4)))) )`
+Devuelve la lista literal (cons (car (cdr (7 4)))).
+**Devuelve:**
 ```racket
 '(cons (car (cdr (7 4))))
 ```
-Segunda parte:  
-`(quote cons)`  
-Devuelve el símbolo 'cons.  
-**Devuelve:**  
+Segunda parte:
+`(quote cons)`
+Devuelve el símbolo 'cons.
+**Devuelve:**
 ```racket
 'cons
 ```
-Tercera parte:  
-`(car (quote (quote cons)))`  
-Devuelve el primer elemento de la lista '(quote cons), que es 'quote.  
-**Devuelve:**  
+Tercera parte:
+`(car (quote (quote cons)))`
+Devuelve el primer elemento de la lista '(quote cons), que es 'quote.
+**Devuelve:**
 ```racket
 'quote
 ```
@@ -96,8 +96,8 @@ Devuelve el primer elemento de la lista '(quote cons), que es 'quote.
 ````racket
 (+ 2 3)
 ```
-Suma 2 y 3.  
-**Devuelve:**  
+Suma 2 y 3.
+**Devuelve:**
 ```racket
 5
 ```
@@ -105,30 +105,32 @@ Suma 2 y 3.
 ````racket
 (+ '2 '3)
 ```
-Suma los símbolos '2 y '3. En Racket, esto genera un error porque no puedes sumar símbolos.
+En Racket, '2 y '3 no son símbolos, sino números literales.
+La comilla ' delante de un número simplemente devuelve el número, así que (+ '2 '3)
+es equivalente a (+ 2 3), y por eso funciona y devuelve 5.
 
 ````racket
 (+ (car '(2 3)) (car (cdr '(2 3)))) ((car (list + - * /)) 2 3)
 ```
-Primera parte:  
-`(+ (car '(2 3)) (car (cdr '(2 3))))`  
-- `(car '(2 3))` devuelve 2  
-- `(cdr '(2 3))` devuelve '(3)  
-- `(car '(3))` devuelve 3  
-- Suma 2 + 3  
-**Devuelve:**  
+Primera parte:
+`(+ (car '(2 3)) (car (cdr '(2 3))))`
+- `(car '(2 3))` devuelve 2
+- `(cdr '(2 3))` devuelve '(3)
+- `(car '(3))` devuelve 3
+- Suma 2 + 3
+**Devuelve:**
 ```racket
 5
 ```
-Segunda parte:  
-`((car (list + - * /)) 2 3)`  
-- `(list + - * /)` crea la lista de funciones  
-- `(car ...)` toma la función +  
-- `(+ 2 3)`  
-**Devuelve:**  
+Segunda parte:
+`((car (list + - * /)) 2 3)`
+- `(list + - * /)` crea la lista de funciones
+- `(car ...)` toma la función +
+- `(+ 2 3)`
+**Devuelve:**
 ```racket
 5
 ```
 
-**Nota:** Si ejecutas todas las líneas juntas, recuerda que algunas expresiones pueden causar error (como sumar símbolos).  
+**Nota:** Si ejecutas todas las líneas juntas, recuerda que algunas expresiones pueden causar error (como sumar símbolos).
 ¿Te gustaría que te explique alguna línea con más detalle?
