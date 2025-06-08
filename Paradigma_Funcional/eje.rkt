@@ -8,3 +8,9 @@
        [Y (* 4 2)]
        [z (+ X Y)])
   z)
+
+(define (mi-funcion a)
+  a)
+
+(define (mi-funcion a b)
+  (+ a b))
